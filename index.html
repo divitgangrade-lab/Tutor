@@ -1,17 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moody IB & Core Academy</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Moody &amp; Co. Academy — Grades 1–8 &amp; Moody IB Tutoring</title>
     <meta
       name="description"
-      content="Immersive tutoring academy for IB prep and grades 1-8 learning across English, Math, and Science."
+      content="Small-room tutoring for grades 1–8 in English, Math, and Science, plus George H. Moody IB application and interview coaching. Choose a plan, request a meeting, pay cash in person."
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <meta name="theme-color" content="#f4efe6" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'none'; object-src 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161a18'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23f4efe6' text-anchor='middle'%3EM%26C%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/views.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <div id="app"></div>
-    <script src="./script.js"></script>
+    <div id="overlay-root"></div>
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="false"></div>
+
+    <script src="js/security.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/hubs.js"></script>
+    <script src="js/pages/specialty.js"></script>
+    <script src="js/pages/checkout.js"></script>
+    <script src="js/pages/portal.js"></script>
+    <script src="js/pages/admin.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
