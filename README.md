@@ -11,7 +11,20 @@ python3 -m http.server 8000
 
 Open <http://localhost:8000>. The site uses hash routing, so every page is a normal static URL after the `#`.
 
-Deploying to GitHub Pages works as-is: all asset paths are relative and there is no server code.
+### Deploy to GitHub Pages
+
+The site is already prepared for GitHub Pages: every asset path is relative, routing is hash-based, and `.nojekyll` is included. No build step and no Actions workflow are required.
+
+One repository setting has to be switched on by an admin:
+
+1. Open **Settings → Pages** in the repository: <https://github.com/divitgangrade-lab/Tutor/settings/pages>
+2. Under **Build and deployment → Source**, choose **Deploy from a branch**.
+3. Set the branch to **main** and the folder to **/ (root)**, then click **Save**.
+4. Wait for the first deployment, usually under a minute. The site goes live at:
+
+   <https://divitgangrade-lab.github.io/Tutor/>
+
+Every later push to `main` republishes automatically. Because this is a public site, keep the demo credentials as demo-only and do not put real student records in the repository or browser storage.
 
 ## Demo access
 
