@@ -532,6 +532,7 @@
   }
 
   function addStudent(input) {
+    if (!isInstructor()) return { ok: false, error: 'Instructor access required.' };
     var name = Safe.text(input && input.name, 80);
     var grade = Number(input && input.grade);
     var family = Safe.text(input && input.family, 60) || 'Independent';
@@ -560,6 +561,7 @@
   }
 
   function updateStudent(id, patch) {
+    if (!isInstructor()) return { ok: false, error: 'Instructor access required.' };
     var student = studentById(id);
     if (!student) return { ok: false, error: 'Student not found.' };
     if (patch && patch.name !== undefined) {
@@ -609,6 +611,7 @@
   }
 
   function addAssignment(input) {
+    if (!isInstructor()) return { ok: false, error: 'Instructor access required.' };
     var student = studentById(input && input.studentId);
     if (!student) return { ok: false, error: 'Choose a student.' };
     var title = Safe.text(input.title, 110);
@@ -638,6 +641,7 @@
   }
 
   function updateAssignment(id, patch) {
+    if (!isInstructor()) return { ok: false, error: 'Instructor access required.' };
     var assignment = assignmentById(id);
     if (!assignment) return { ok: false, error: 'Assignment not found.' };
     if (patch && patch.title !== undefined) {
@@ -664,6 +668,7 @@
   }
 
   function deleteAssignment(id) {
+    if (!isInstructor()) return;
     state.assignments = state.assignments.filter(function (assignment) {
       return assignment.id !== id;
     });
@@ -672,6 +677,7 @@
   }
 
   function submitAssignment(id, text) {
+    if (!isFamily()) return { ok: false, error: 'Family sign-in required.' };
     var assignment = assignmentById(id);
     if (!assignment) return { ok: false, error: 'Assignment not found.' };
     if (assignment.status === 'graded') return { ok: false, error: 'This assignment is already graded.' };
@@ -686,6 +692,7 @@
   }
 
   function gradeAssignment(id, score, feedback) {
+    if (!isInstructor()) return { ok: false, error: 'Instructor access required.' };
     var assignment = assignmentById(id);
     if (!assignment) return { ok: false, error: 'Assignment not found.' };
     var numeric = Number(score);

@@ -361,6 +361,7 @@
     );
   }
 
+  Pages.login = login;
   Pages.signedIn = signedInNotice;
 
   Pages.portal = function (state) {

@@ -303,7 +303,13 @@
 
     if (subject === 'ib') {
       primary = Data.planById(goal === 'accelerate' ? 'ib-candidate-sprint' : 'ib-application-studio');
-      secondary = Data.planById('ib-applicant-diagnostic');
+      var ibDiagnostic = Data.planById('ib-applicant-diagnostic');
+      secondary = {
+        title: ibDiagnostic.title,
+        subtitle: ibDiagnostic.subtitle + ' · ' + ibDiagnostic.unit,
+        price: ibDiagnostic.price,
+        code: 'plan:' + ibDiagnostic.id
+      };
       copy =
         'Start with the application work, and use the diagnostic to confirm timing and fit. If you are early in the process, reverse the order.';
     } else {

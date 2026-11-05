@@ -155,7 +155,7 @@
     var fields = Array.prototype.slice.call(section.querySelectorAll('input, select, textarea'));
     for (var index = 0; index < fields.length; index += 1) {
       if (!fields[index].checkValidity()) {
-        fields[index].reportValidity();
+        if (typeof fields[index].reportValidity === 'function') fields[index].reportValidity();
         return false;
       }
     }
@@ -610,6 +610,21 @@
       var cart = Store.cart();
       if (!cart.length) {
         UI.toast('The cart is empty.', 'error');
+        return;
+      }
+      if (state.checkout.step < 3) {
+        if (!validateStep(state.checkout.step)) return;
+        var midway = Object.assign({}, state.checkout.draft, checkoutDraft(readForm(form)));
+        if (state.checkout.step === 1) {
+          var midwayError = validateDetails(midway);
+          if (midwayError) {
+            UI.toast(midwayError, 'error');
+            return;
+          }
+        }
+        state.checkout = { step: state.checkout.step + 1, draft: midway };
+        renderRoute();
+        scrollToCheckout();
         return;
       }
       if (!validateStep(3)) return;

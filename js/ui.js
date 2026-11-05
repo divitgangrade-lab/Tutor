@@ -252,7 +252,7 @@
 
   /* ---------------------------------------------------------------- Overlay */
 
-  var overlayState = { lastFocus: null, onKey: null, open: false };
+  var overlayState = { lastFocus: null, onKey: null, onBackdrop: null, open: false };
 
   function closeOverlay() {
     var root = document.getElementById('overlay-root');
@@ -261,6 +261,11 @@
     if (overlayState.onKey) {
       document.removeEventListener('keydown', overlayState.onKey);
       overlayState.onKey = null;
+    }
+    var overlayRoot = document.getElementById('overlay-root');
+    if (overlayState.onBackdrop && overlayRoot) {
+      overlayRoot.removeEventListener('click', overlayState.onBackdrop);
+      overlayState.onBackdrop = null;
     }
     if (overlayState.lastFocus && typeof overlayState.lastFocus.focus === 'function') {
       try {
@@ -319,15 +324,12 @@
       if (opts.onKey) opts.onKey(event);
     };
     document.addEventListener('keydown', overlayState.onKey);
-    root.addEventListener(
-      'click',
-      function (event) {
-        if (event.target === root || event.target.classList.contains('overlay-backdrop')) {
-          closeOverlay();
-        }
-      },
-      { once: true }
-    );
+    overlayState.onBackdrop = function (event) {
+      if (event.target === root || event.target.classList.contains('overlay-backdrop')) {
+        closeOverlay();
+      }
+    };
+    root.addEventListener('click', overlayState.onBackdrop);
   }
 
   function modal(options) {

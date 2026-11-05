@@ -249,6 +249,8 @@
     );
   }
 
+  Pages.instructorLogin = instructorLogin;
+
   Pages.admin = function (state) {
     var active = (state && state.adminTab) || 'overview';
     var content =
